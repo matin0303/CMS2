@@ -2,9 +2,10 @@ import "./output.css"
 
 function App() {
   return (
-    <div className="*:p-0 *:m-0 w-full h-lvh ">
+    <div className=" w-full h-screen font-custom">
+      
     </div>
   );
-}
+} 
 
 export default App;
