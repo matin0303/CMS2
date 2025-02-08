@@ -1,9 +1,8 @@
-
+import "./output.css"
 
 function App() {
   return (
-    <div className="App">
-
+    <div className="*:p-0 *:m-0 w-full h-lvh ">
     </div>
   );
 }
