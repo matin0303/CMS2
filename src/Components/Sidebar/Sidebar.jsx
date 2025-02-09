@@ -8,9 +8,6 @@ import { LuListOrdered } from "react-icons/lu";
 import { MdOutlineLocalOffer } from "react-icons/md";
 
 
-
-
-
 export default function Sidebar() {
   return (
     <div className='fixed bg-blue-custom h-screen  '>
