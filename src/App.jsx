@@ -11,7 +11,10 @@ function App() {
       <Sidebar/>
       <div className="felx-4 p-5 pr-57">
         <Header/>
-        {router}
+        <div className="p-10">
+          {router}
+        </div>
+        
       </div>
     </div>
   );
