@@ -14,32 +14,32 @@ export default function Sidebar() {
       <h1 className='text-xl text-white p-4 text-right border-b-1 border-solid border-white'>به داشبورد خود خوش آمدید</h1>
       <ul className='mt-5'> 
         <li className='relative p-4 activeLink'>
-          <Link className=' w-full no-underline text-white flex items-center' >
+          <Link to= "/" className=' w-full no-underline text-white flex items-center' >
             <AiOutlineHome className='text-2xl'/>صفحه اصلی 
           </Link>
         </li>
         <li className='relative p-4'>
-          <Link className=' w-full no-underline text-white flex items-center'>
+          <Link to="/Products" className=' w-full no-underline text-white flex items-center'>
             <AiFillProduct/> محصولات
           </Link>
         </li>
         <li className='relative p-4'>
-          <Link className=' w-full no-underline text-white flex items-center'>
+          <Link to="/Comments" className=' w-full no-underline text-white flex items-center'>
             <FaRegComments/>  کامنت ها   
           </Link> 
         </li>
         <li className='relative p-4 '>
-          <Link className=' w-full no-underline text-white flex items-center'>
+          <Link to="/Users" className=' w-full no-underline text-white flex items-center'>
            <FiUsers/> کاربران
           </Link>
         </li>
         <li className='relative p-4'>
-          <Link className=' w-full no-underline text-white flex items-center'>
+          <Link to="/Orders" className=' w-full no-underline text-white flex items-center'>
             <LuListOrdered/>سفارشات
           </Link>
         </li>
         <li className='relative p-4 '>
-          <Link className=' w-full no-underline text-white flex items-center'>
+          <Link to="Offs" className=' w-full no-underline text-white flex items-center'>
             <MdOutlineLocalOffer/>تخفیف ها
           </Link>
         </li>
