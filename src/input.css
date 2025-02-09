@@ -2,15 +2,21 @@
     --white-50:#f0f0f0;
     --blue-custom:#471AAA;
 }
+
 @font-face {
     font-family: Lalezar;
     src: url(./fonts/Lalezar-Regular.ttf);
 }
+body{
+    display: flex;
+    direction: rtl;
+    background-color:var(--white-50);
+}
+.activeLink{
+    background-color: #391587;
+}
 .font-custom{
     font-family: Lalezar;
-}
-body{
-    background-color:var(--white-50);
 }
 .bg-white-50{
     background-color: var(--white-50)
@@ -18,6 +24,7 @@ body{
 .bg-blue-custom{
     background-color: var(--blue-custom)
 }
+
 @import "tailwindcss";
-@import "./reset.css"
+
 
