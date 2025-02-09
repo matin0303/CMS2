@@ -33,7 +33,9 @@ body {
       "Liberation Mono", "Courier New", monospace;
     --color-red-400: oklch(0.704 0.191 22.216);
     --color-amber-100: oklch(0.962 0.059 95.617);
+    --color-amber-300: oklch(0.879 0.169 91.605);
     --color-amber-400: oklch(0.828 0.189 84.429);
+    --color-amber-700: oklch(0.555 0.163 48.998);
     --color-gray-500: oklch(0.551 0.027 264.364);
     --color-gray-700: oklch(0.373 0.034 259.733);
     --color-gray-800: oklch(0.278 0.033 256.848);
@@ -295,6 +297,9 @@ body {
   .m-56 {
     margin: calc(var(--spacing) * 56);
   }
+  .m-auto {
+    margin: auto;
+  }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
@@ -303,6 +308,9 @@ body {
   }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
+  }
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
   }
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
@@ -348,6 +356,9 @@ body {
   }
   .h-10 {
     height: calc(var(--spacing) * 10);
+  }
+  .h-35 {
+    height: calc(var(--spacing) * 35);
   }
   .h-100 {
     height: calc(var(--spacing) * 100);
@@ -397,8 +408,20 @@ body {
   .w-15 {
     width: calc(var(--spacing) * 15);
   }
+  .w-30 {
+    width: calc(var(--spacing) * 30);
+  }
+  .w-35 {
+    width: calc(var(--spacing) * 35);
+  }
   .w-40 {
     width: calc(var(--spacing) * 40);
+  }
+  .w-200 {
+    width: calc(var(--spacing) * 200);
+  }
+  .w-auto {
+    width: auto;
   }
   .w-full {
     width: 100%;
@@ -497,6 +520,10 @@ body {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-4 {
+    border-style: var(--tw-border-style);
+    border-width: 4px;
+  }
   .border-b-1 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
@@ -509,11 +536,17 @@ body {
     --tw-border-style: solid;
     border-style: solid;
   }
+  .border-amber-700 {
+    border-color: var(--color-amber-700);
+  }
   .border-white {
     border-color: var(--color-white);
   }
   .bg-amber-100 {
     background-color: var(--color-amber-100);
+  }
+  .bg-amber-300 {
+    background-color: var(--color-amber-300);
   }
   .bg-amber-400 {
     background-color: var(--color-amber-400);
@@ -523,6 +556,9 @@ body {
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .object-cover {
+    object-fit: cover;
   }
   .p-1 {
     padding: calc(var(--spacing) * 1);
@@ -545,6 +581,9 @@ body {
   .p-10 {
     padding: calc(var(--spacing) * 10);
   }
+  .pr-10 {
+    padding-right: calc(var(--spacing) * 10);
+  }
   .pr-55 {
     padding-right: calc(var(--spacing) * 55);
   }
@@ -565,6 +604,9 @@ body {
   }
   .pr-100 {
     padding-right: calc(var(--spacing) * 100);
+  }
+  .text-center {
+    text-align: center;
   }
   .text-right {
     text-align: right;
