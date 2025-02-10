@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Deletemodal from '../../Deletemodal/Deletemodal';
 
 export default function Producttable() {
+  
+  const [showDeleteModal,setShowDeleteModal] = useState(false);
+
+  const openDeleteModa = ()=>{
+    document.getElementById('modalparent').style.visibility="visible";
+    setShowDeleteModal(true)
+  }
   return (
+    <>
     <table className='w-3/4 bg-white rounded-2xl mt-10'>
       <tr className='text-center'>
         <th>عکس</th>
@@ -24,10 +33,13 @@ export default function Producttable() {
         </td>
         <td>
             <button className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>جزئیات</button>
-            <button className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>حذف</button>
+            <button onClick={openDeleteModa} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>حذف</button>
             <button className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>ویرایش</button>
         </td>
       </tr>
     </table>
+    {showDeleteModal&&<Deletemodal/>}
+    </>
+
   )
 }
