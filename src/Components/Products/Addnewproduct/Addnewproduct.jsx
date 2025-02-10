@@ -18,7 +18,7 @@ export default function Addnewproduct() {
             <input className='bg-white-50 w-3/4 h-8 p-2 outline-0 rounded-[0.5rem]' type="text" placeholder='ادرس عکس محصول را وارد کنید' />
         </div>
         <div className='w-1/2 flex  justify-center items-center max-lg:w-full'>
-            <input className='bg-white-50 w-3/4 h-8 p-2 outline-0 rounded-[0.5rem]' type="text" placeholder='تعداد محبوبیت محصول را وارد کنید' />
+            <input className='bg-white-50 w-3/4 h-8 p-2 outline-0 rounded-[0.5rem]' type="text" placeholder='تعداد رنگ بندی محصول را وارد کنید' />
         </div>
         <div className='w-1/2 flex justify-center items-center max-lg:w-full'>
             <input className='bg-white-50 w-3/4 h-8 p-2 outline-0 rounded-[0.5rem]' type="text" placeholder='میزان محبوبیت محصول را وارد کنید' />
