@@ -8,7 +8,7 @@ export default function Detailmodal({close}) {
     }
   return ReactDom.createPortal(
     <>
-      <div className=' w-1/3  p-10 bg-white'>
+      <div className=' w-1/3  p-10 bg-white rounded-2xl'>
         <h3 className='mb-4 text-black'>جزئیات محصول</h3>
         <table className=' w-full border-2 border-solid border-black'>
             <tr className='text-right border-b-2 border-solid border-black  flex justify-between'>
