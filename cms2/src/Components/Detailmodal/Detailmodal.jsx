@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from "react-dom"
-export default function Detailmodal({close}) {
+export default function Detailmodal({close,title,price,popularity}) {
   const closeModale = ()=>{
       close();
       document.getElementById('modalparent').style.visibility="hidden";
@@ -17,9 +17,9 @@ export default function Detailmodal({close}) {
                 <th>محبوبیت</th>
             </tr>
             <tr className='text-right flex justify-between'>
-                <td>لپتاپ</td>
-                <td>43,000,000</td>
-                <td>91</td>
+                <td>{title}</td>
+                <td>{price}</td>
+                <td>{popularity}</td>
             </tr>
         </table>
         <button onClick={closeModale} className='bg-blue-custom text-white cursor-pointer shadow-md shadow-gray-700 w-full h-8 mt-3 rounded-3xl'>بستن</button>
