@@ -17,10 +17,16 @@ export default function Producttable() {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditeModal, setShowEditeModal] = useState(false);
   const [allproduct, setAllproduct] = useState([])
+  const [productId, setProductId] = useState(null)
+  const [productInfo, setProductInfo] = useState({})
 
   const openDeleteModa = () => {
     document.getElementById('modalparent').style.visibility = "visible";
     setShowDeleteModal(true)
+  }
+  function getAllProduct() {
+    fetch("http://localhost:8000/api/products/")
+      .then((res) => res.json()).then((data) => { setAllproduct(data) })
   }
   function closeDeletemodale() {
     setShowDeleteModal(false)
@@ -44,9 +50,17 @@ export default function Producttable() {
     console.log("submited")
   }
 
+  function deleteProduct() {
+    fetch(`http://localhost:8000/api/products/${productId}`, { method: 'Delete' })
+      .then(res => res.json())
+      .then(result => {
+        setShowDeleteModal(false);
+        getAllProduct();
+
+      })
+  }
   useEffect(() => {
-    fetch("http://localhost:8000/api/products/")
-      .then((res) => res.json()).then((data) => { setAllproduct(data) })
+    getAllProduct()
   }, [])
 
   return (
@@ -55,7 +69,7 @@ export default function Producttable() {
         allproduct.length ? (
           <table className='w-3/4 bg-white rounded-2xl mt-5'>
             {
-              allproduct.map((product, index) => (
+              allproduct.map((product) => (
                 <>
                   <tr className='text-center border-t-1 border-solid border-black '>
                     <th>عکس</th>
@@ -77,8 +91,14 @@ export default function Producttable() {
                       {product.count}
                     </td>
                     <td>
-                      <button onClick={openDeailmodal} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>جزئیات</button>
-                      <button onClick={openDeleteModa} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>حذف</button>
+                      <button onClick={() => {
+                        openDeailmodal();
+                        setProductInfo(product)
+                      }} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>جزئیات</button>
+                      <button onClick={() => {
+                        openDeleteModa();
+                        setProductId(product.id)
+                      }} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>حذف</button>
                       <button onClick={openEditemodal} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>ویرایش</button>
                     </td>
                   </tr>
@@ -91,8 +111,8 @@ export default function Producttable() {
         )
       }
 
-      {showDeleteModal && <Deletemodal close={closeDeletemodale} />}
-      {showDetailModal && <Detailmodal close={closeDetailModal} />}
+      {showDeleteModal && <Deletemodal close={closeDeletemodale} deleteSubmit={deleteProduct} />}
+      {showDetailModal && <Detailmodal close={closeDetailModal}  productInfo = {productInfo} />}
       {showEditeModal && <Editemodal close={() => { setShowEditeModal(false) }} onSubmit={submitProductEdite}>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
           <MdDriveFileRenameOutline className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='نام' />

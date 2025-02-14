@@ -1,11 +1,15 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-export default function Deletemodal({close}) {
+export default function Deletemodal({close , deleteSubmit}) {
   const closeModale = ()=>{
     close();
     document.getElementById('modalparent').style.visibility="hidden";
 
+  }
+  const deleteAccept = ()=>{
+    deleteSubmit();
+    document.getElementById('modalparent').style.visibility="hidden";
   }
   return ReactDom.createPortal(
     <div className=' flex justify-center items-center '>
@@ -23,7 +27,7 @@ export default function Deletemodal({close}) {
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                         </svg>
                         <h3 class="mb-5 text-lg font-normal text-white ">محصول حذف شود؟</h3>
-                        <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                        <button onClick={deleteAccept} data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                             بله
                         </button>
                         <button onClick={closeModale} data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-gray-500 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">لغو</button>
