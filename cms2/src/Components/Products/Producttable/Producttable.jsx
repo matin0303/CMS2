@@ -16,9 +16,22 @@ export default function Producttable() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditeModal, setShowEditeModal] = useState(false);
-  const [allproduct, setAllproduct] = useState([])
-  const [productId, setProductId] = useState(null)
-  const [productInfo, setProductInfo] = useState({})
+  const [allproduct, setAllproduct] = useState([]);
+  const [productId, setProductId] = useState(null);
+  const [productInfo, setProductInfo] = useState({});
+
+  const [productNewTitel,setProductNewTitel] = useState('');
+  const [productNewCount,setProductNewCount] = useState('');
+  const [productNewPrice,setProductNewPrice] = useState('');
+  const [productNewUrl,setProductNewUrl] = useState('');
+  const [productNewColor,setProductNewColor] = useState('');
+  const [productNewPopularity,setProductNewPopularity] = useState('');
+  const [productNewSale,setProductNewSale] = useState('');
+
+  
+
+
+
 
   const openDeleteModa = () => {
     document.getElementById('modalparent').style.visibility = "visible";
@@ -45,9 +58,28 @@ export default function Producttable() {
     document.getElementById('modalparent').style.visibility = "visible";
     setShowEditeModal(true)
   }
-  function submitProductEdite(event) {
-    event.preventDefault();
-    console.log("submited")
+  function submitProductEdite() {
+    
+    const productNewInfo={
+      title : productNewTitel,
+      price :productNewPrice,
+      count : productNewCount,
+      img:productNewUrl,
+      popularity :productNewPopularity,
+      sale:productNewSale,
+      colors:productNewColor,
+    }
+
+    fetch(`http://localhost:8000/api/products/${productId}`,{
+    method:'PUT',
+    headers :{
+    'Content-Type' : 'application/json'
+    },
+    body :JSON.stringify(productNewInfo)
+  }).then(res => res.json()) 
+  .then(result => {
+    getAllProduct()
+  })
   }
 
   function deleteProduct() {
@@ -99,7 +131,18 @@ export default function Producttable() {
                         openDeleteModa();
                         setProductId(product.id)
                       }} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>حذف</button>
-                      <button onClick={openEditemodal} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>ویرایش</button>
+                      <button onClick={()=>{
+                        openEditemodal();
+                        setProductId(product.id);
+                        setProductNewTitel(product.title);
+                        setProductNewCount(product.count);
+                        setProductNewPrice(product.price);
+                        setProductNewUrl(product.img);
+                        setProductNewColor(product.colors);
+                        setProductNewPopularity(product.popularity);
+                        setProductNewSale(product.sale)
+
+                      }} className='p-2 m-2 text-white rounded-[0.5rem] bg-blue-custom'>ویرایش</button>
                     </td>
                   </tr>
 
@@ -115,22 +158,52 @@ export default function Producttable() {
       {showDetailModal && <Detailmodal close={closeDetailModal}  productInfo = {productInfo} />}
       {showEditeModal && <Editemodal close={() => { setShowEditeModal(false) }} onSubmit={submitProductEdite}>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <MdDriveFileRenameOutline className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='نام' />
+          <MdDriveFileRenameOutline className='text-2xl' /> <input 
+          className='w-full  p-1 text-center outline-0 ' 
+          type="text" 
+          placeholder='نام'  
+          value={productNewTitel}
+          onChange={e=>setProductNewTitel(e.target.value)} />
         </div>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <TbNumber123 className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='موجودی' />
+          <TbNumber123 className='text-2xl' /> <input
+           className='w-full  p-1 text-center outline-0 ' 
+           type="text" 
+           placeholder='موجودی' 
+           value={productNewCount}
+           onChange={e=>setProductNewCount(e.target.value)}/>
         </div>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <FaDollarSign className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='قبمت' />
+          <FaDollarSign className='text-2xl' /> <input 
+          className='w-full  p-1 text-center outline-0 ' 
+          type="text" 
+          placeholder='قبمت' 
+          value={productNewPrice}
+          onChange={e=>setProductNewPrice(e.target.value)} />
         </div>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <FaAirbnb className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='ادرس عکس' />
+          <FaAirbnb className='text-2xl' /> <input 
+          className='w-full  p-1 text-center outline-0 ' 
+          type="text" 
+          placeholder='ادرس عکس' 
+          value={productNewUrl} 
+          onChange={e=>setProductNewUrl(e.target.value)}/>
         </div>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <IoIosColorPalette className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='تعداد رنگ بندی' />
+          <IoIosColorPalette className='text-2xl' /> <input 
+          className='w-full  p-1 text-center outline-0 ' 
+          type="text" 
+          placeholder='تعداد رنگ بندی' 
+          value={productNewColor} 
+          onChange={e=>setProductNewColor(e.target.value)}/>
         </div>
         <div className=' flex justify-center items-center bg-white-50 rounded-2xl mt-3  '>
-          <FaRegGrinStars className='text-2xl' /> <input className='w-full  p-1 text-center outline-0 ' type="text" placeholder='حبوبیت(درصد)' />
+          <FaRegGrinStars className='text-2xl' /> <input 
+          className='w-full  p-1 text-center outline-0 ' 
+          type="text" 
+          placeholder='حبوبیت(درصد)' 
+          value={productNewPopularity}
+          onChange={e=>setProductNewPopularity(e.target.value)} />
         </div>
       </Editemodal>}
     </>

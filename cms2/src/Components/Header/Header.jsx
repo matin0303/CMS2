@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className='flex w-full justify-between items-center max-lg:flex-col'>
       <div className='flex items-center gap-x-2 mr-3 '>
-        <img className="w-12 h-12 rounded-4xl"  src="/images/admin-prof.jpg" alt="admin profile" />
+        <img className="w-12 h-12 rounded-4xl"  src="/img/admin-prof.jpg" alt="admin profile" />
         <div>
             <h1 className='text-[1.2rem]'>متین پیرمحمدی</h1>
             <h3 className='text-[1 rem] text-gray-700' >برنامه نویس فرانت اند</h3>
