@@ -8,6 +8,7 @@ export default function Comments() {
   const [showCommentDetailModal, setShowCommentDetailModal] = useState(false)
   const [showCommentDeleteModal, setShowCommentDeleteModal] = useState(false)
   const [showCommentEditeModal, setShowCommentEditeModal] = useState(false)
+  const [showCommentAcceptModal, setShowCommentAcceptModal] = useState(false)
   const [commentDetail, setCommentDetail] = useState('')
   const [commentID, setCommentID] = useState(null)
   const [commentBody, setCommentBody] = useState('')
@@ -70,7 +71,24 @@ export default function Comments() {
       setShowCommentEditeModal(false);
       getALlComment();
     })
-  }
+    }
+
+    function openCommentAcceptModal(){
+      document.getElementById('modalparent').style.visibility = "visible";
+      setShowCommentAcceptModal(true)
+    }
+    function closeCommentAcceptModal(){
+      setShowCommentAcceptModal(false)
+    }
+    function acceptComment(){
+      console.log('Comment Accepted')
+      // fetch(`http://localhost:8000/api/comments/accept/${commentID}`,{
+      //   method : 'POST'
+      // }).then(res => res.json())
+      // .then(result=>{
+      //   setShowCommentAcceptModal(false)
+      // })
+    }
   return (
     <div className='w-full flex justify-center items-center flex-col'>
       {allComments.length ? (
@@ -108,7 +126,10 @@ export default function Comments() {
                       setCommentID(comment.id)
                     }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> ویرایش</button>
                     <button className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> پاسخ </button>
-                    <button className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> تایید</button>
+                    <button onClick={()=>{
+                      setCommentID(comment.id)
+                      openCommentAcceptModal()
+                    }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> تایید</button>
                   </td>
                 </tr>
               ))              
@@ -118,16 +139,18 @@ export default function Comments() {
 
       ) : (<Errorbox msg="هیچ کامنتی یافت نشد" />)}
       {showCommentDetailModal && <Detailmodal close={closeCommentDetailModal}>{commentDetail}</Detailmodal>}
-      {showCommentDeleteModal && <Deletemodal close={closeCommentDeleteModal} deleteSubmit = {deleteComment}/>}
+      {showCommentDeleteModal && <Deletemodal close={closeCommentDeleteModal} deleteSubmit = {deleteComment} title={'ایا از حذف اطمینان دارید؟'}/>}
       {showCommentEditeModal && <Editemodal close={closeCommentEditeModal} onSubmit={submitCommentEdite}>
-      <div className='flex justify-center items-center w-full'>
-        <textarea
-         className='border-2 border-solid border-black w-full'
-         value={commentBody}
-         onChange={(e)=>{setCommentBody(e.target.value)}}>
-        </textarea>
-      </div>
+        <div className='flex justify-center items-center w-full'>
+          <textarea
+          className='border-2 border-solid border-black w-full'
+          value={commentBody}
+          onChange={(e)=>{setCommentBody(e.target.value)}}>
+          </textarea>
+        </div>
       </Editemodal>}
+      {showCommentAcceptModal && <Deletemodal close={closeCommentAcceptModal} deleteSubmit = {acceptComment} title={'ایا از تایید اطمینان دارید؟'}/>}
+
 
     </div>
   )

@@ -154,7 +154,7 @@ export default function Producttable() {
         )
       }
 
-      {showDeleteModal && <Deletemodal close={closeDeletemodale} deleteSubmit={deleteProduct} />}
+      {showDeleteModal && <Deletemodal close={closeDeletemodale} deleteSubmit={deleteProduct} title={'ایا از حذف اطمینان دارید؟'} />}
       {showDetailModal && <Detailmodal close={closeDetailModal}>
         <h3 className='mb-4 text-black'>جزئیات محصول</h3>
         <table className=' w-full border-2 border-solid border-black'>
