@@ -15,7 +15,7 @@ export default function Comments() {
 
   const [allComments, setAllComments] = useState([])
 
-  const getALlComment = ()=>{
+  const getALlComment = () => {
     fetch('http://localhost:8000/api/comments')
       .then(res => res.json())
       .then((comments) => setAllComments(comments))
@@ -25,70 +25,70 @@ export default function Comments() {
   }, [])
 
 
-  function openCommentDetailModal(){
+  function openCommentDetailModal() {
     document.getElementById('modalparent').style.visibility = "visible";
     setShowCommentDetailModal(true)
   }
-  function closeCommentDetailModal(){
+  function closeCommentDetailModal() {
     setShowCommentDetailModal(false)
   }
 
-  function openCommentDeleteModal(){
+  function openCommentDeleteModal() {
     document.getElementById('modalparent').style.visibility = "visible";
     setShowCommentDeleteModal(true)
   }
-  function closeCommentDeleteModal(){
+  function closeCommentDeleteModal() {
     setShowCommentDetailModal(false)
   }
-  function deleteComment(){
-    fetch(`http://localhost:8000/api/comments/${commentID}`,{
-      method :'DELETE'
+  function deleteComment() {
+    fetch(`http://localhost:8000/api/comments/${commentID}`, {
+      method: 'DELETE'
     }).then(res => res.json())
-    .then(result =>{
-      setShowCommentDeleteModal(false);
-      getALlComment()
-    })
+      .then(result => {
+        setShowCommentDeleteModal(false);
+        getALlComment()
+      })
   }
 
-  function openCommentEdieModal(){
+  function openCommentEdieModal() {
     document.getElementById('modalparent').style.visibility = "visible";
     setShowCommentEditeModal(true)
   }
-  function closeCommentEditeModal(){
+  function closeCommentEditeModal() {
     setShowCommentEditeModal(false)
   }
-  function submitCommentEdite(){
-    fetch(`http://localhost:8000/api/comments/${commentID}`,{
-      method :'PUT',
-      headers :{
-        "Content-Type":"application/json"
+  function submitCommentEdite() {
+    fetch(`http://localhost:8000/api/comments/${commentID}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        body:commentBody,
+      body: JSON.stringify({
+        body: commentBody,
       })
     }).then(res => res.json())
-    .then(result =>{
-      setShowCommentEditeModal(false);
-      getALlComment();
-    })
-    }
+      .then(result => {
+        setShowCommentEditeModal(false);
+        getALlComment();
+      })
+  }
 
-    function openCommentAcceptModal(){
-      document.getElementById('modalparent').style.visibility = "visible";
-      setShowCommentAcceptModal(true)
-    }
-    function closeCommentAcceptModal(){
-      setShowCommentAcceptModal(false)
-    }
-    function acceptComment(){
-      console.log('Comment Accepted')
-      // fetch(`http://localhost:8000/api/comments/accept/${commentID}`,{
-      //   method : 'POST'
-      // }).then(res => res.json())
-      // .then(result=>{
-      //   setShowCommentAcceptModal(false)
-      // })
-    }
+  function openCommentAcceptModal() {
+    document.getElementById('modalparent').style.visibility = "visible";
+    setShowCommentAcceptModal(true)
+  }
+  function closeCommentAcceptModal() {
+    setShowCommentAcceptModal(false)
+  }
+  function acceptComment() {
+    console.log('Comment Accepted')
+    // fetch(`http://localhost:8000/api/comments/accept/${commentID}`,{
+    //   method : 'POST'
+    // }).then(res => res.json())
+    // .then(result=>{
+    //   setShowCommentAcceptModal(false)
+    // })
+  }
   return (
     <div className='w-full flex justify-center items-center flex-col'>
       {allComments.length ? (
@@ -108,48 +108,57 @@ export default function Comments() {
                 <tr key={comment.id}>
                   <td>{comment.userID}</td>
                   <td> {comment.productID}</td>
-                  <td><button onClick={()=>{
+                  <td><button onClick={() => {
                     openCommentDetailModal();
                     setCommentDetail(comment.body);
-              
+
                   }} className='felx justify-center text-[0.9rem] px-1.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'>دیدن متن</button></td>
                   <td>{comment.date}</td>
                   <td>{comment.hour}</td>
                   <td>
-                    <button onClick={()=>{
+                    <button onClick={() => {
                       openCommentDeleteModal();
                       setCommentID(comment.id)
                     }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'>حذف </button>
-                    <button onClick={()=>{
+                    <button onClick={() => {
                       openCommentEdieModal();
                       setCommentBody(comment.body);
                       setCommentID(comment.id)
                     }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> ویرایش</button>
                     <button className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> پاسخ </button>
-                    <button onClick={()=>{
-                      setCommentID(comment.id)
-                      openCommentAcceptModal()
-                    }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> تایید</button>
+
+                    {comment.isAccept === 0 ? (
+                      <button onClick={() => {
+                        setCommentID(comment.id)
+                        openCommentAcceptModal()
+                      }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> تایید</button>
+                    ) : (
+                      <button onClick={() => {
+                        setCommentID(comment.id)
+                        openCommentAcceptModal()
+                      }} className='felx justify-center text-[0.9rem] px-1.5 mx-0.5 items-center bg-blue-custom rounded-[0.5rem] shadow-xl text-white cursor-pointer'> رد</button>
+                    )}
                   </td>
                 </tr>
-              ))              
+              ))
             }
           </tbody>
         </table>
 
       ) : (<Errorbox msg="هیچ کامنتی یافت نشد" />)}
       {showCommentDetailModal && <Detailmodal close={closeCommentDetailModal}>{commentDetail}</Detailmodal>}
-      {showCommentDeleteModal && <Deletemodal close={closeCommentDeleteModal} deleteSubmit = {deleteComment} title={'ایا از حذف اطمینان دارید؟'}/>}
-      {showCommentEditeModal && <Editemodal close={closeCommentEditeModal} onSubmit={submitCommentEdite}>
-        <div className='flex justify-center items-center w-full'>
-          <textarea
-          className='border-2 border-solid border-black w-full'
-          value={commentBody}
-          onChange={(e)=>{setCommentBody(e.target.value)}}>
-          </textarea>
-        </div>
-      </Editemodal>}
-      {showCommentAcceptModal && <Deletemodal close={closeCommentAcceptModal} deleteSubmit = {acceptComment} title={'ایا از تایید اطمینان دارید؟'}/>}
+      {showCommentDeleteModal && <Deletemodal close={closeCommentDeleteModal} deleteSubmit={deleteComment} title={'ایا از حذف اطمینان دارید؟'} />}
+      {showCommentEditeModal &&
+        <Editemodal close={closeCommentEditeModal} onSubmit={submitCommentEdite}>
+          <div className='flex justify-center items-center w-full'>
+            <textarea
+              className='border-2 border-solid border-black w-full'
+              value={commentBody}
+              onChange={(e) => { setCommentBody(e.target.value) }}>
+            </textarea>
+          </div>
+        </Editemodal>}
+      {showCommentAcceptModal && <Deletemodal close={closeCommentAcceptModal} deleteSubmit={acceptComment} title={'ایا از تایید اطمینان دارید؟'} />}
 
 
     </div>

@@ -60,6 +60,8 @@ body {
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --radius-lg: 0.5rem;
@@ -309,6 +311,9 @@ body {
   }
   .m-3 {
     margin: calc(var(--spacing) * 3);
+  }
+  .m-4 {
+    margin: calc(var(--spacing) * 4);
   }
   .m-29 {
     margin: calc(var(--spacing) * 29);
@@ -638,6 +643,10 @@ body {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -650,9 +659,6 @@ body {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
-  .text-\[0\.7rem\] {
-    font-size: 0.7rem;
-  }
   .text-\[0\.9rem\] {
     font-size: 0.9rem;
   }
@@ -661,12 +667,6 @@ body {
   }
   .text-\[1\.5rem\] {
     font-size: 1.5rem;
-  }
-  .text-\[1rem\] {
-    font-size: 1rem;
-  }
-  .text-\[5px\] {
-    font-size: 5px;
   }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
