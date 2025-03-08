@@ -12,7 +12,7 @@ body {
   direction: rtl;
   background-color: var(--white-50);
 }
-.activeLink {
+.active {
   background-color: #391587;
 }
 .font-custom {
@@ -452,9 +452,6 @@ body {
   }
   .w-35 {
     width: calc(var(--spacing) * 35);
-  }
-  .w-\[10rem\] {
-    width: 10rem;
   }
   .w-\[90\%\] {
     width: 90%;
