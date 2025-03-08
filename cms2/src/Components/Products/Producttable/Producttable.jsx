@@ -158,12 +158,12 @@ export default function Producttable() {
       {showDetailModal && <Detailmodal close={closeDetailModal}>
         <h3 className='mb-4 text-black'>جزئیات محصول</h3>
         <table className=' w-full border-2 border-solid border-black'>
-          <tr className='text-right border-b-2 border-solid border-black  flex justify-between'>
+          <tr className='text-center border-b-2 border-solid border-black'>
             <th>نام</th>
             <th>قیمت</th>
             <th>محبوبیت</th>
           </tr>
-          <tr className='text-right flex justify-between'>
+          <tr className='text-center'>
             <td>{productInfo.title}</td>
             <td>{productInfo.price}</td>
             <td>{productInfo.popularity}</td>

@@ -456,6 +456,9 @@ body {
   .w-\[10rem\] {
     width: 10rem;
   }
+  .w-\[90\%\] {
+    width: 90%;
+  }
   .w-\[400px\] {
     width: 400px;
   }
@@ -635,6 +638,9 @@ body {
   }
   .text-center {
     text-align: center;
+  }
+  .text-left {
+    text-align: left;
   }
   .text-right {
     text-align: right;

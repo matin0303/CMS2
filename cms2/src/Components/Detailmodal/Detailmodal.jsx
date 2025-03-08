@@ -8,7 +8,7 @@ export default function Detailmodal({close ,children}) {
     }
   return ReactDom.createPortal(
     <>
-      <div className=' w-1/3  p-10 bg-white rounded-2xl'>
+      <div className=' w-[90%]  p-10 bg-white rounded-2xl'>
         {children}
         <button onClick={closeModale} className='bg-blue-custom text-white cursor-pointer shadow-md shadow-gray-700 w-full h-8 mt-3 rounded-3xl'>بستن</button>
       </div>
